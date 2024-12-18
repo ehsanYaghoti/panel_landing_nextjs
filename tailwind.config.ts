@@ -11,6 +11,10 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        backgroundImage : {
+          'Ellipse-1-texture': "url('/PNG/Ellipse 342@2x.png')",
+          'Ellipse-2-texture': "url('/PNG/Ellipse 343@2x.png')",
+        }
       },
     },
   },
