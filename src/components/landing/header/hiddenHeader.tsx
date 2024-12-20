@@ -18,7 +18,7 @@ const HiddenHeader = () => {
 
     return(
         <>
-            <div id='hiddenMenu' dir='ltr' className='hidden flex-col items-start justify-start  gap-10 h-screen w-[320px] bg-zinc-100 dark:bg-[#092635] text-gray-700 dark:text-gray-50 bg-opacity-100 fixed left-0 top-0 z-50 px-6 py-4 ' >
+            <div id='hiddenMenu' dir='ltr' className='hidden flex-col items-start justify-start  gap-10 h-screen w-[320px] bg-zinc-100 dark:bg-[#092635] text-gray-700 dark:text-gray-50 bg-opacity-100 fixed left-0 top-0 z-[999] px-6 py-4 ' >
                 {/* hidden button */}
                 <button id='closeButton' onClick={closeHiddenMenuHandler}  className='w-fit h-fit' >
                     <i className='text-blue-900 dark:text-gray-50 text-xl font-[700] cursor-pointer absolute top-5 right-5' >
@@ -50,7 +50,7 @@ const HiddenHeader = () => {
                 
                 
             </div>
-            <div id='overlay' onClick={closeHiddenMenuHandler}  className='hidden w-screen h-screen fixed bg-gray-900 bg-opacity-50 z-40  ' ></div>
+            <div id='overlay' onClick={closeHiddenMenuHandler}  className='hidden w-screen h-screen fixed bg-gray-900 bg-opacity-50 z-[998]  ' ></div>
             
         </>
         

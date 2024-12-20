@@ -12,10 +12,6 @@ const Header = async () => {
 
     const usercookie =  cookieStore.get('panel_token')
 
-    if(! usercookie){
-        // redirect('/auth/login')
-    }
-
     let user = undefined
 
     if(usercookie){

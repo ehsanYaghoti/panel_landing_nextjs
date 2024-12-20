@@ -1,5 +1,5 @@
 
-import Header from "@/components/general/header";
+import Header from "@/components/general/headerAdmin";
 import checkAuth from "@/helpers/checkAuth";
 import { redirect } from "next/navigation";
 import { toast } from "react-toastify";

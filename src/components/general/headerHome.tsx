@@ -22,20 +22,11 @@ const HeaderHome = async () => {
     if(usercookie){
         user = await getUserByToken(usercookie.value)
     }
-
-    const logOutHandler = (e : React.MouseEvent<HTMLButtonElement> ) => {
-        // it dose not work because can not send handlers as props from ssr to csr and swr is not update for nextjs 15 and react 19 already
-        e.preventDefault()
-
-        cookieStore.delete('panel_token')
-        user = undefined
-    }
-
     
     return (
         <>
         
-            <header className="flex items-center py-5 px-2 md:px-20 w-full justify-between border-b-2 border-b-slate-50 mb-3 font-[500]   z-40 bg-white" >
+            <header className="flex items-center py-5 px-2 md:px-20 w-full justify-between border-b-2 border-b-slate-50 mb-3 font-[500]  bg-white" >
                 
                 {/* burger menu */}
                 <BurgurButton />
@@ -43,10 +34,11 @@ const HeaderHome = async () => {
                 <Title />
                 <Navbar />
                 
-                <div className="flex items-center gap-4 text-xl text-slate-700" >
+                {/* authentication section */}
+                <div className="flex items-center gap-4 text-xl text-slate-700 z-[99] " >
                     {
                         user ?        
-                        <Menu>
+                        <Menu as={'div'} className=' z-50' >
                         <MenuButton className={'flex items-center gap-1 cursor-pointer'} >
                             <i className="hidden md:flex" >
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
@@ -74,9 +66,9 @@ const HeaderHome = async () => {
                                 <span>Admin Panel</span>
                             </Link>
                         </MenuItem>
-                        {/* <MenuItem>
-                            <LogoutButton Cookies={null} />
-                        </MenuItem> */}
+                        <MenuItem>
+                            <LogoutButton user={user}  />
+                        </MenuItem>
                         </MenuItems>
                         </Menu>                 
                         

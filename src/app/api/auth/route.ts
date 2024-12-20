@@ -71,24 +71,26 @@ export async function POST(
 
 }
 
-// export async function DELETE(req : NextRequest , res : NextResponse){
+export async function DELETE(req : NextRequest , res : NextResponse){
 
-//     const storeCookies = await cookies()
+    const storeCookies = await cookies()
 
-//     storeCookies.delete('panel_token')
+    storeCookies.delete('panel_token')
     
-//     return new Response(JSON.stringify({message : "logout was successfull" , success : true}) , {
-//         status : 200 ,
-//         headers : {
-//             'Set-Cookie' : `${storeCookies.set('panel_token' , '' , {
-//                 httpOnly : true,
-//                 maxAge : 0,
-//                 sameSite : 'lax',
-//                 path : '/',
-//                 domain : 'localhost'
-//             })}`,
+    return new Response(JSON.stringify({message : "logout was successfull" , success : true}) , {
+        status : 200 ,
         
-//         }
-//     })
+    })
+
+}
+
+// headers : {
+//     'Set-Cookie' : `${storeCookies.set('panel_token' , '' , {
+//         httpOnly : true,
+//         maxAge : 0,
+//         sameSite : 'lax',
+//         path : '/',
+//         domain : 'localhost'
+//     })}`,
 
 // }

@@ -32,9 +32,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-      <html lang="en" className="scroll-smooth " >
+      <html lang="en" className="scroll-smooth "  style={{ overflowAnchor : 'none' }} >
         <StoreProvider>
         <body
+          style={{ overflowAnchor : 'none' }} 
           className={`${geistSans.variable} ${geistMono.variable} ${nunito.className} antialiased`}
         >
           {children}

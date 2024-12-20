@@ -1,4 +1,3 @@
-import ValidationError from "@/exceptions/validationError";
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 
 const callApi = () => {
@@ -31,13 +30,8 @@ const callApi = () => {
         (err) => {
             
             const res = err?.response
-            // console.log(err)
-            if(res){
-                if(res.status === 422){
-                    const errors = err?.response?.data?.fullMessageswithKey?.errors
-                    throw new ValidationError(errors)
-                }
-            }
+            console.log(err)
+          
             
             throw err
             // Promise.reject(err)
