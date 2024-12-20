@@ -10,7 +10,6 @@ const checkAuth = async () => {
 
     const token = await getLoginToken()
 
-    console.log('use token' , token )
     if(token){
         return true
     }

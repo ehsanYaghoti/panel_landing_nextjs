@@ -1,5 +1,7 @@
+import LoadingPreRender from "@/components/general/loadings/loadingPrerender";
 import checkAuth from "@/helpers/checkAuth";
 import { redirect } from "next/navigation";
+import { Suspense } from "react";
 
 
 export default async function AuthLayout({children } : {children: React.ReactNode}) {
@@ -18,9 +20,11 @@ export default async function AuthLayout({children } : {children: React.ReactNod
     }
   
     return (
-        <main className="w-full h-full p-6 min-h-screen flex items-center justify-center" >
-            {children}
-        </main>
+        <Suspense fallback={<LoadingPreRender /> }>
+            <main className="w-full h-full p-6 min-h-screen flex items-center justify-center" >
+                {children}
+            </main>
+        </Suspense>
     );
 
 }

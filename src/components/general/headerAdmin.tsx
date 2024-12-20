@@ -4,7 +4,6 @@ import { getUserByToken } from "@/helpers/user";
 import { AccountCircleOutlined } from "@mui/icons-material";
 import { cookies } from "next/headers";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 
 const Header = async () => {
     
@@ -17,9 +16,6 @@ const Header = async () => {
     if(usercookie){
         user = await getUserByToken(usercookie.value)
     }
-
-
-    console.log('user from server' ,user)
 
     return (
         <header className="flex items-center p-4 justify-between border-b-2 mb-3 " >

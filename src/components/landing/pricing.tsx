@@ -25,7 +25,7 @@ const Pricing = () => {
                 price : '69',
                 status : 'Essential',
                 features : ['Collaborate with clients' , 'Complete documents faster' , 'Connect your favorite tools'],
-                default : true,
+                default : false,
                 kind : 'mo'
 
             },

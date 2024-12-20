@@ -21,8 +21,7 @@ const storeLoginToken =  async (token : string , days : number = 10) => {
     cookieStore.set('panel_token' , token , {
         httpOnly : true,
         maxAge : 3600 * 24 * 14,
-        // domain : 'http://localhost:3000',
-        path : '/'
+        path : '/',
     })
 
     return resParsed;
@@ -55,8 +54,6 @@ const getLoginToken = async () => {
     const storedCookies = await cookies()
     
     const token2 = storedCookies.get('panel_token')
-
-    console.log('token2' , token2)
 
     return token2
 

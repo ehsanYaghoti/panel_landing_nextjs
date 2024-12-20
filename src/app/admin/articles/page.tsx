@@ -1,10 +1,11 @@
 'use client';
 
 import EnhancedTable from "@/components/general/admin/table";
+import LoadingPreRender from "@/components/general/loadings/loadingPrerender";
 import { ArticleModel } from "@/types/models";
 import { CircularProgress } from "@mui/material";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 
@@ -35,7 +36,6 @@ const Articles = () => {
             return res.json() 
         })
         .then(data => { 
-            console.log(data)
             setArticlesServer(data)
             setLoading(false)
 
@@ -66,8 +66,6 @@ const Articles = () => {
             return RegExp(value , 'gi').test(article.title)
         })
 
-        console.log('search',foundArticles)
-
         setSearchArticles(prev => {
             return [
                 ...foundArticles
@@ -89,8 +87,6 @@ const Articles = () => {
         })
 
         const deletedArticle = await res.json()
-        console.log(deletedArticle)
-
 
         if(res.ok){
             toast.success('article deleted success fully')
@@ -112,6 +108,8 @@ const Articles = () => {
     }
 
     return (
+
+        <Suspense fallback={<LoadingPreRender />} >
         <div className="w-[80%] min-h-screen h-fit flex flex-col gap-8 items-center  font-sans " >
 
             <h1 className="flex text-3xl text-slate-600  font-semibold  text-left mb-6" >Articles</h1>
@@ -126,14 +124,15 @@ const Articles = () => {
             </div>
 
             {
-                loading ? <span>loading...</span>
+                loading ?  <CircularProgress />
                 : artcilesServer.length === 0 ? <span className="border border-blue-500 p-6 rounded-md text-xl font-semibold" >there is no article to show </span>  
                 :  searchValue.length > 0 ? 
-                seacrhArtciles.length > 0 ? <EnhancedTable articles={ seacrhArtciles} deleteHandler={deleteHandler} /> : <span>there is no rchresult sea</span>
+                seacrhArtciles.length > 0 ? <EnhancedTable articles={ seacrhArtciles} deleteHandler={deleteHandler} /> : <span className=" px-4 py-5 text-xl font-[600] text-slate-600 border rounded-lg border-red-400" >there is no search result</span>
                 : <EnhancedTable articles={artcilesServer} deleteHandler={deleteHandler} /> 
             }
             
         </div>
+        </Suspense>
     )
 }
 

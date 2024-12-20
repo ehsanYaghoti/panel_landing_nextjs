@@ -1,16 +1,10 @@
 'use client'
-import ArticleForm from "@/forms/admin/articles/articleFormCreate";
+import LoadingPreRender from "@/components/general/loadings/loadingPrerender";
 import ArticleFormEdit from "@/forms/admin/articles/articleFormEdit";
-import LoginForm from "@/forms/auth/loginForm";
-import { updateUserInfo } from "@/store/auth";
-import { useAppDispatch } from "@/store/hooks";
 import { ArticleModel } from "@/types/models";
 import { Circle, RotateRight } from "@mui/icons-material";
-import { CircularProgress } from "@mui/material";
-import { truncate } from "fs";
-import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 
 const EditArticle = () => {
@@ -50,6 +44,8 @@ const EditArticle = () => {
 
 
     return (
+        <Suspense fallback={<LoadingPreRender /> }>
+
         <div className="flex min-h-full  w-[900px] flex-col items-center justify-center px-6 py-12 lg:px-8 rounded-lg  border border-slate-200 shadow-md ">
 
             <div className=" sm:w-full  ">
@@ -69,6 +65,8 @@ const EditArticle = () => {
             </div>
 
         </div>
+
+        </Suspense>
     )
 }
 

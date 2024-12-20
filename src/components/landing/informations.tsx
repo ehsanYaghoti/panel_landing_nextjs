@@ -10,7 +10,7 @@ const Informaitons = () => {
             label : '1'
         },
         {
-            value : 2,
+            value : '2',
             label : '2'
         },
         {
@@ -51,7 +51,7 @@ const Informaitons = () => {
     ] 
     
     return (
-        <div id="practicing" className="flex flex-col gap-20 items-center my-24 w-full py-32 bg-slate-50" >
+        <div  id="practicing" className="flex flex-col gap-20 items-center my-24 w-full py-32 bg-slate-50" >
             <div className="flex flex-col items-center gap-6" >
                 <h3 className=" text-3xl font-[700] text-slate-800  text-center " >Lorem ipsum dolor sit amet, consectetuer</h3>
                 <p className=" text-slate-500 text-base font-[500] text-center whitespace-break-spaces " >
@@ -101,7 +101,7 @@ const Informaitons = () => {
                         <div className="flex items-center gap-4  justify-between w-full flex-wrap" >
                             <button className="border px-3 py-2 bg-transparent text-slate-400 border-slate-400 font-[600] rounded-md hover:text-opacity-60 focus:bg-violet-600 focus:text-white "  >EasyStart</button>
                             <button className="border px-3 py-2 bg-transparent text-slate-400 border-slate-400 font-[600] rounded-md hover:text-opacity-60 focus:bg-violet-600 focus:text-white " >Essentials</button>
-                            <button className="border px-3 py-2 bg-transparent text-slate-400 border-slate-400 font-[600] rounded-md hover:text-opacity-60 focus:bg-violet-600 focus:text-white " autoFocus >Essentials</button>
+                            <button className="border px-3 py-2 bg-transparent text-slate-400 border-slate-400 font-[600] rounded-md hover:text-opacity-60 focus:bg-violet-600 focus:text-white " >Essentials</button>
                             <button className="border px-3 py-2 bg-transparent text-slate-400 border-slate-400 font-[600] rounded-md hover:text-opacity-60 focus:bg-violet-600 focus:text-white " >complete</button>
                         </div>
                     </div>

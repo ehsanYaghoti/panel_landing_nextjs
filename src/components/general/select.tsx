@@ -34,7 +34,7 @@ export default function BasicSelect({data} : Props) {
         >
             {
                 data.map((item , index) => {
-                    return <MenuItem key={index} value={item.value}>{item.label}</MenuItem>
+                    return <MenuItem key={item.value} value={item.value}>{item.label}</MenuItem>
                 })
             }
         </Select>

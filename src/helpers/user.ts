@@ -25,14 +25,10 @@ const getUser = async (values : LoginFormValues) => {
 
 
         if(users){
-            console.log('users' , users)
 
             const user = users.find(user => {
                 return user.email === values.email 
             })
-
-
-            console.log('uuser' , user)
 
             return user
         }
@@ -50,8 +46,6 @@ const isUserAlreadyExist = async (values : LoginFormValues ) => {
 
         
         const user = await getUser(values)
-
-        console.log('user :' , user)
 
         if(user === undefined){
             return false
@@ -71,11 +65,6 @@ const comparePassword = async (values : LoginFormValues , user: UserModel | unde
             
         const passwordField = values.password
 
-        // if(! userArg){
-        //     let user = await getUser(values)
-        // }
-
-
         let isPasswordValidated = false
         if(user !== undefined){
             if( user.password === passwordField){
@@ -89,14 +78,6 @@ const comparePassword = async (values : LoginFormValues , user: UserModel | unde
         console.log(error)
     }
 
-}
-
-const updateUserAuthenticated = async (user : UserModel ) => {
-    try {
-        
-    } catch (error) {   
-        console.log(error)
-    }
 }
 
 const getUserById = async (id : string) =>  {
@@ -119,7 +100,6 @@ const getUserByToken = async (token : string) =>  {
         const users : UserModel[] = await getUserslist()
 
         const user = users.find(user => {
-            // console.log(typeof user.token)
             return `${user.token}` === token
         })
 
