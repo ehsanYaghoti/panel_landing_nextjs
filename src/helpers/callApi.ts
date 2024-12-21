@@ -3,12 +3,11 @@ import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 const callApi = () => {
 
     let axiosInstance : AxiosInstance = axios.create({
-        baseURL : 'https://6759b1ae099e3090dbe29875.mockapi.io/api',
+        baseURL : 'http://localhost:3000/api',
         headers : {
             'Content-Type' : "application/json",
         },
         withCredentials : true
-
     })
 
     axiosInstance.interceptors.request.use(

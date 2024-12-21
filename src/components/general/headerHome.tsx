@@ -1,26 +1,70 @@
-'use server';
+'use client';
 
 import { getUserByToken } from "@/helpers/user";
-import { cookies } from "next/headers";
+// import { cookies } from "next/headers";
 import Title from "../landing/header/title";
 import Navbar from "../landing/header/navbar";
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import Link from "next/link";
 import HiddenHeader from "../landing/header/hiddenHeader";
 import BurgurButton from "../landing/header/burgerButton";
-import LogoutButton from "../landing/header/logoutButton";
+import { useEffect, useState } from "react";
+import { UserModel } from "@/types/models";
+import callApi from "@/helpers/callApi";
+import { CircularProgress } from "@mui/material";
+import { toast } from "react-toastify";
 
-const HeaderHome = async () => {
+const HeaderHome = () => {
+
+    const [user , setUser] = useState<UserModel | undefined>(undefined)
+    const [loadingUser , setLoadingUser] = useState(true)
+
+    useEffect(() => {
+
+        setLoadingUser(true)
+        callApi().get('/user')
+        .then((res) => {
+            const data = res?.data
+            console.log(data)
+            if(data.success){
+               
+                if(data.user){
+                    setUser(data.user)
+                }
+
+                setLoadingUser(false)
+            }
+        })
+        .catch(err => {
+            console.log(err)
+            setLoadingUser(true)
+        })
+
+
+    } , [])
 
     
-    const cookieStore =  await cookies()
+    const logOutHandler = (e : React.MouseEvent<HTMLButtonElement> ) => {
+    
+        setLoadingUser(true)
+        e.preventDefault()
+        
+        callApi().delete('/auth' , {withCredentials : true})
+        .then(res => {
+            console.log(res)
+            if(res.data?.success){
+                toast.success('logout was successfull')
+                setUser(undefined)
+                setLoadingUser(false)
 
-    const usercookie =  cookieStore.get('panel_token')
-
-    let user = undefined
-
-    if(usercookie){
-        user = await getUserByToken(usercookie.value)
+            }    
+        })
+        .catch(err => {
+            console.log(err)
+            setLoadingUser(false)
+            
+        })
+        
     }
     
     return (
@@ -37,7 +81,7 @@ const HeaderHome = async () => {
                 {/* authentication section */}
                 <div className="flex items-center gap-4 text-xl text-slate-700 z-[99] " >
                     {
-                        user ?        
+                        loadingUser ? <CircularProgress   /> : user ?        
                         <Menu as={'div'} className=' z-50' >
                         <MenuButton className={'flex items-center gap-1 cursor-pointer'} >
                             <i className="hidden md:flex" >
@@ -67,7 +111,14 @@ const HeaderHome = async () => {
                             </Link>
                         </MenuItem>
                         <MenuItem>
-                            <LogoutButton user={user}  />
+                            <button onClick={logOutHandler} className="flex items-center hover:bg-blue-600 w-full hover:text-white  gap-2 p-1 rounded-md hover:text-opacity-80 text-slate-800 " >
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M22 10.5h-6m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM4 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 10.374 21c-2.331 0-4.512-.645-6.374-1.766Z" />
+                                </svg>
+                                <span>
+                                    Log out
+                                </span>
+                            </button>
                         </MenuItem>
                         </MenuItems>
                         </Menu>                 

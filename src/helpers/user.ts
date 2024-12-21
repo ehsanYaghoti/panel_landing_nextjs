@@ -8,6 +8,7 @@ const getUserslist = async () => {
 
         const users = await res.json()
 
+
         return users
         
 
@@ -29,6 +30,10 @@ const getUser = async (values : LoginFormValues) => {
             const user = users.find(user => {
                 return user.email === values.email 
             })
+
+            
+            console.log('user',user)
+
 
             return user
         }
