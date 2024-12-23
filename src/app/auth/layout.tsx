@@ -1,30 +1,43 @@
-import LoadingPreRender from "@/components/general/loadings/loadingPrerender";
+'use client';
+
 import checkAuth from "@/helpers/checkAuth";
-import { redirect } from "next/navigation";
-import { Suspense } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 
-export default async function AuthLayout({children } : {children: React.ReactNode}) {
+export default function AuthLayout({children } : {children: React.ReactNode}) {
   
     // check user is authenticated if so then redirect to user panel (or home route) then be toastified.
   
-    const isAuthenticated = await checkAuth()
+    const [loading , setLoading] = useState(true)
+    const router = useRouter()
 
-    console.log('is' ,isAuthenticated)
-  
-    if(isAuthenticated){
+    useEffect(() => {
+        setLoading(true)
 
-        // toast('for access this route you should first login')
+        checkAuth()
+        .then(isAuthenticated => {
+            console.log('is',isAuthenticated)
 
-        redirect('/')
-    }
+            if(isAuthenticated){
+                toast.info('to access this route you should logout first')
+                router.push('/')
+                setLoading(false)
+                return
+            }
+            
+            setLoading(false)
+
+        })
+        .catch(err => console.log(err))
+    } , [])
+
   
     return (
-        <Suspense fallback={<LoadingPreRender /> }>
             <main className="w-full h-full p-6 min-h-screen flex items-center justify-center" >
-                {children}
+                {loading ? <span>laoding...</span> : children}
             </main>
-        </Suspense>
     );
 
 }

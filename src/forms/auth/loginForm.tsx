@@ -2,13 +2,10 @@ import { withFormik } from "formik";
 import * as yup from 'yup';
 import { LoginFormProps, LoginFormValues } from "@/types/auth";
 import InnerLoginForm from "@/components/forms/auth/innerLoginForm";
-// import callApi from "@/helpers/callApi";
-import ValidationError from "@/exceptions/validationError";
 import { UserModel } from "@/types/models";
 import { toast } from "react-toastify";
 import { comparePassword, getUser, isUserAlreadyExist } from "@/helpers/user";
 import { storeLoginToken } from "@/helpers/auth";
-import { redirect } from "next/navigation";
 
 const phoneRegExp = /^(0|0098|\+98)9(0[1-5]|[1 3]\d|2[0-2]|98)\d{7}$/
 const strongPassRegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
@@ -32,11 +29,9 @@ const LoginForm = withFormik<LoginFormProps, LoginFormValues>({
             
             const { router , storeUser } = props
 
-            // const isUserExist = await isUserAlreadyExist(values)
             const user = await getUser(values)
             const isPasswordValidate = await comparePassword(values , user)
 
-            console.log('user info' , user)
 
             if(! user){
                 toast.error('this email is NOT registered before')
@@ -53,9 +48,6 @@ const LoginForm = withFormik<LoginFormProps, LoginFormValues>({
 
 
             const res = await storeLoginToken(user?.token)
-        
-            console.log('ramabma'  ,res)
-
 
             if(res?.success){
                 
@@ -70,10 +62,7 @@ const LoginForm = withFormik<LoginFormProps, LoginFormValues>({
 
                 toast.success('login was successfull now you can access panel')
                 
-                // redirect('/')
-                // setTimeout(() => {
-                    router.push('/')                    
-                // }, 2000);
+                router.push('/')                    
             }
             
         } catch (error) {

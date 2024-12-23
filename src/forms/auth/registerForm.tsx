@@ -4,7 +4,6 @@ import { RegisterFormProps, RegisterFormValues } from "@/types/auth";
 import InnerRegisterForm from "@/components/forms/auth/innerRegisterForm";
 import { isUserAlreadyExist } from "@/helpers/user";
 import { toast } from "react-toastify";
-// import callApi from "@/helpers/callApi";
 
 const phoneRegExp = /^(0|0098|\+98)9(0[1-5]|[1 3]\d|2[0-2]|98)\d{7}$/
 const strongPassRegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
@@ -48,7 +47,7 @@ const RegisterForm = withFormik<RegisterFormProps, RegisterFormValues>({
                 password : values.password,
                 token : Date.now(),
                 admin : values.email === 'ehsan.yaghoti@yahoo.com' ? true : false,
-                username : values.email.replace(/@.+/ , '')
+                username : values.username
             }
 
             const res = await fetch('https://6759b1ae099e3090dbe29875.mockapi.io/api/users' , {

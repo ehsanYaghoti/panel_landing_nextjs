@@ -5,14 +5,11 @@ import { useAppDispatch } from "@/store/hooks";
 import { UserModel } from "@/types/models";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-// import { useCookies } from "react-cookie";
+import LoadingPreRender from "@/components/general/loadings/loadingPrerender";
+import { Suspense } from "react";
 
 
 export default function Login() {
-
-    const userId = localStorage.getItem('userId')
-
-    console.log(userId)
     
     const router = useRouter()
     const dispatch = useAppDispatch()
@@ -21,10 +18,10 @@ export default function Login() {
         dispatch(updateUserInfo(user))
     }
 
-    // const [cookie , setCookie] = useCookies(['e-commerce-token'])
-
 
     return (
+        <Suspense fallback={<LoadingPreRender /> }>
+
         <div className="flex min-h-full  w-[500px] flex-col items-center justify-center px-6 py-12 lg:px-8 rounded-lg  border border-slate-200 shadow-md ">
 
             <div className=" sm:w-full  ">
@@ -47,5 +44,8 @@ export default function Login() {
             </div>
 
         </div>
+
+        </Suspense>
+
     )
 }

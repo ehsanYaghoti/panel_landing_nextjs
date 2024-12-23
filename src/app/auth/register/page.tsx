@@ -2,6 +2,8 @@
 import RegisterForm from "@/forms/auth/registerForm";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { Suspense } from "react";
+import LoadingPreRender from "@/components/general/loadings/loadingPrerender";
 
 
 export default function Register() {
@@ -10,6 +12,8 @@ export default function Register() {
     const router = useRouter()
 
     return (
+        <Suspense fallback={<LoadingPreRender /> }>
+
         <div className="flex min-h-full  w-[500px] flex-col items-center justify-center px-6 py-12 lg:px-8 rounded-lg  border border-slate-200 shadow-md ">
 
             <div className=" sm:w-full  ">
@@ -32,5 +36,8 @@ export default function Register() {
             </div>
 
         </div>
+        
+        </Suspense>
+
     )
 }
