@@ -9,7 +9,6 @@ import callApi from "@/helpers/callApi";
 import { useAppDispatch } from "@/store/hooks";
 import { updateUserInfo } from "@/store/auth";
 import AuthSection from "../landing/header/authSection";
-import { toast } from "react-toastify";
 
 const HeaderHome = () => {
 
@@ -24,11 +23,9 @@ const HeaderHome = () => {
             const data = res?.data
             if(data.success){
                 if(data.user){
-                    console.log(data?.user)
                     dispatch(updateUserInfo(data.user))
                 } 
 
-                // toast.error('the panel_token cookie is not authentic remove it')
                 setLoadingUser(false)
 
             } 

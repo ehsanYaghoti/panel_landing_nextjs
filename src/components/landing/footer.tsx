@@ -16,7 +16,7 @@ const Footer = () => {
                 <div className=" flex flex-col lg:flex-row flex-wrap items-center lg:items-start justify-between gap-20 w-full" >
                     <div className="flex flex-col items-start gap-4" >
                         <div className="flex items-center gap-2" >
-                            <Image className="object-contain" src={'/PNG/Layer 2@2x.png'} alt="Sodci" width={60} height={60} />
+                            <Image className="object-contain w-auto h-auto " src={'/PNG/Layer 2@2x.png'} alt="Sodci" width={60} height={60} />
                             <h4 className=" text-white font-[800] text-2xl" >Sodci</h4>
                         </div>
                         <p className=" text-base text-left w-64  md:w-72" >

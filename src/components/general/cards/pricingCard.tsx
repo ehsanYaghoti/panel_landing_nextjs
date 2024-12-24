@@ -21,7 +21,7 @@ const PricingCard = ({card} : Props ) => {
             hover:shadow-[rgb(124,58,237)_0px_-5px_0px_0px,rgba(93,92,92,0.1)_5px_5px_5px,rgba(93,93,93,0.1)_-5px_5px_5px]
         `}>
             <div className="flex flex-col px-6 gap-2 items-center pb-4 border-b-2 border-dashed border-slate-200 " >
-                <Image src={card.image} alt="pricing" width={75} height={75} className="mb-6" />
+                <Image src={card.image} alt="pricing" width={75} height={75} className="mb-6 w-auto h-auto" />
                 <p className="flex items-end" >
                     <span className="text-4xl font-[700] " >${card.price}</span> 
                     <span className="text-base text-slate-500" >/{card.kind}</span>

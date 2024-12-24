@@ -26,7 +26,7 @@ const Reports = () => {
                     md:bg-origin-border                    
                 " >
                     <div className="flex items-center justify-between translate-y-32 md:translate-y-6 -translate-x-20 " >
-                        <Image className="object-contain" src={'/PNG/Group 73553@2x.png'} alt="trust" width={170} height={170}  />
+                        <Image className="object-contain w-auto h-auto" src={'/PNG/Group 73553@2x.png'} alt="trust" width={170} height={170}  />
                         <div className="flex flex-col items-start gap-5" >
                             <h4 className="text-base whitespace-nowrap md:text-2xl font-[700]" >Trust Our secure</h4>
                             <p className="hidden md:flex text-slate-500 font-[500] " >
@@ -37,7 +37,7 @@ const Reports = () => {
                         </div>
                     </div>
                     <div className="flex items-center flex-row-reverse translate-y-3 translate-x-20  "  >
-                        <Image className=" object-fit" src={'/PNG/Group73552@2x.png'} alt="trust" width={170} height={170}  />
+                        <Image className=" object-fit  w-auto h-auto" src={'/PNG/Group73552@2x.png'} alt="trust" width={170} height={170}  />
                         <div className="flex flex-col items-start gap-5 text-right" >
                             <h4 className="text-base md:text-2xl whitespace-nowrap font-[700] text-right" >Award-winning</h4>
                             <p className="text-slate-500 hidden md:flex font-[500] text-left  " >
@@ -48,7 +48,7 @@ const Reports = () => {
                         </div>
                     </div>
                     <div className="flex items-center -translate-y-28 md:-translate-y-6 -translate-x-16 " >
-                        <Image className=" object-contain  " src={'/PNG/Group73554@2x.png'} alt="trust" width={170} height={170}  />
+                        <Image className=" object-contain  w-auto h-auto " src={'/PNG/Group73554@2x.png'} alt="trust" width={170} height={170}  />
                         <div className="flex flex-col items-start gap-3" >
                             <h4 className="text-base md:text-2xl whitespace-nowrap font-[700]" >Free data Transition</h4>
                             <p className="text-slate-500 hidden md:flex font-[500] " >
