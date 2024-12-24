@@ -27,7 +27,6 @@ const Header = async () => {
             {
                 user ? 
                 <span className="flex items-center gap-3 text-xl text-slate-700" > 
-                    <AccountCircleOutlined />
                     {user?.username} 
                 </span>
                 : <div className="flex items-center gap-3" >

@@ -1,6 +1,8 @@
 'use client';
 
+import callApi from "@/helpers/callApi";
 import checkAuth from "@/helpers/checkAuth";
+import { CircularProgress } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
@@ -14,29 +16,44 @@ export default function AuthLayout({children } : {children: React.ReactNode}) {
     const router = useRouter()
 
     useEffect(() => {
+
         setLoading(true)
+        callApi().get('/user')
+        .then((res) => {
 
-        checkAuth()
-        .then(isAuthenticated => {
-            console.log('is',isAuthenticated)
+            const data = res?.data
 
-            if(isAuthenticated){
-                toast.info('to access this route you should logout first')
+            // check if panel_token exist
+            if(data.success && data.token){
+                
+                // check if panel_token is authentic
+                if(data.user){
+                    console.log(data?.user)
+                    toast.info('you are login now please logout first')
+                    router.push('/')
+                    return 
+                } 
+
+                toast.error('the panel_token cookie exist but it is not authentic remove it from browser cookies')
                 router.push('/')
-                setLoading(false)
                 return
-            }
-            
+            } 
+
             setLoading(false)
 
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+            console.log(err)
+            setLoading(false)
+        })
+
+
     } , [])
 
   
     return (
             <main className="w-full h-full p-6 min-h-screen flex items-center justify-center" >
-                {loading ? <span>laoding...</span> : children}
+                {loading ? <CircularProgress /> : children}
             </main>
     );
 

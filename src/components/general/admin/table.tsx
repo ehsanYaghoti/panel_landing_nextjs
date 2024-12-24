@@ -234,7 +234,7 @@ interface Props {
 
 export default function EnhancedTable({articles , deleteHandler} : Props) 
 {
-  const [order, setOrder] = React.useState<Order>('asc');
+  const [order, setOrder] = React.useState<Order>('desc');
   const [orderBy, setOrderBy] = React.useState<keyof Data>('createdAt');
   const [selected, setSelected] = React.useState<readonly number[]>([]);
   const [page, setPage] = React.useState(0);
@@ -355,7 +355,7 @@ export default function EnhancedTable({articles , deleteHandler} : Props)
                     <TableCell >
                         <img className='h-12 w-12 borde text-center self-center mx-auto border-blue-500 rounded-full' src={row.image} alt={row.title}/>
                     </TableCell>
-                    <TableCell align="center" className=' overflow-hidden text-ellipsis' >{row.summary}</TableCell>
+                    <TableCell align="left" >{row.summary}</TableCell>
                     <TableCell align="center">{row.author}</TableCell>
                     <TableCell align="center">{row.viewCount}</TableCell>
                     <TableCell align="center">{row.likeCount}</TableCell>

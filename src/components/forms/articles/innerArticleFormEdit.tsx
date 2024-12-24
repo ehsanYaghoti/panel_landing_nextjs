@@ -13,13 +13,11 @@ interface Props extends FormikProps<ArticleFormValues> {
 
 const InnerArticleFormEdit = (props : Props ) => {
 
-    console.log('ss' , props)
-
     return (
         <Form className="space-y-6" >
 
             <div className="flex flex-col items-start" >
-                <label htmlFor='description' className={`block text-sm/6 font-medium text-gray-900`}>
+                <label htmlFor='description' className={`block text-xl font-[600] text-gray-700`}>
                     language
                 </label>
                 <div className="flex items-center gap-6" >
@@ -32,7 +30,7 @@ const InnerArticleFormEdit = (props : Props ) => {
             <InputField name="summary" label="Summary of article" />
 
             <>
-                <label htmlFor='description' className={`block text-sm/6 font-medium text-gray-900`}>
+                <label htmlFor='description' className={`block text-xl font-[600] text-gray-700`}>
                     description
                 </label>
                 <Field name='description' id='description' className="w-full"
@@ -48,9 +46,9 @@ const InnerArticleFormEdit = (props : Props ) => {
             <div>
                 <button
                     type="submit"
-                    className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-xl font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
-                    Create Article
+                    Edit Article
                 </button>
             </div>
 

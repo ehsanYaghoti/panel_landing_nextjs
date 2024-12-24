@@ -31,10 +31,6 @@ const getUser = async (values : LoginFormValues) => {
                 return user.email === values.email 
             })
 
-            
-            console.log('user',user)
-
-
             return user
         }
 
@@ -44,7 +40,6 @@ const getUser = async (values : LoginFormValues) => {
     }
 
 }
-
 
 const isUserAlreadyExist = async (values : LoginFormValues ) => {
     try {
@@ -57,6 +52,70 @@ const isUserAlreadyExist = async (values : LoginFormValues ) => {
         } else if(user){
             return true
         }
+
+    } catch (error) {
+        console.log(error)
+    }
+
+}
+
+const getUserByPhoneNumber = async (values : LoginFormValues) => {
+
+    try {
+            
+        const users : UserModel[]  = await getUserslist()
+
+
+        if(users){
+
+            const user = users.find(user => {
+                return user.phone_number === values.phone_number 
+            })
+
+            return user
+        }
+
+
+    } catch (error) {
+        console.log(error)
+    }
+
+}
+
+const isPhoneNumberAlreadyExist = async (values : LoginFormValues ) => {
+    try {
+
+        const user = await getUserByPhoneNumber(values)
+
+        if(user === undefined){
+            return false
+        } else if(user){
+            return true
+        }
+
+    } catch (error) {
+        console.log(error)
+    }
+
+}
+
+const isPhoneNumberExistAndBelongToThisEmail = async (values : LoginFormValues ) => {
+    try {
+
+        const isPhoneNumberExist = await isPhoneNumberAlreadyExist(values)
+
+        if(! isPhoneNumberExist){
+            return false
+        }
+
+        const userByEmail = await getUser(values)
+
+        if(userByEmail?.phone_number === values.phone_number){
+            return true
+        } else {
+            return false
+        }
+
 
     } catch (error) {
         console.log(error)
@@ -113,7 +172,7 @@ const getUserByToken = async (token : string) =>  {
     } catch (error) {
         console.log(error)
     }
-} 
+}
 
 
-export {isUserAlreadyExist , comparePassword , getUser , getUserslist , getUserById , getUserByToken}
+export {isUserAlreadyExist , isPhoneNumberAlreadyExist , isPhoneNumberExistAndBelongToThisEmail , comparePassword , getUser , getUserslist , getUserById , getUserByToken}

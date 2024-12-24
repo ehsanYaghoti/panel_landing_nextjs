@@ -4,23 +4,14 @@ import { RootState } from ".";
 import { UserModel } from "@/types/models";
 
 interface AuthState {
-    phoneVerifyToken ?: string
-    user ?: UserModel
-    isAuthenticated ?: boolean
+    phoneVerifyToken ?: string;
+    user ?: UserModel;
+    isAuthenticated ?: boolean;
 }
 
 const initialState : AuthState = {
     phoneVerifyToken : undefined,
-    user : {
-        id : "",
-        username : "",
-        email : "",
-        phone_number : '',
-        password : '',
-        admin : false,
-        createdAt : "",
-        token : '',
-    },
+    user : undefined,
     isAuthenticated : false
 }
 

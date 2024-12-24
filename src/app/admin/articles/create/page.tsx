@@ -10,7 +10,6 @@ const CreateArticle = () => {
     const router = useRouter()
 
     return (
-        <Suspense fallback={<LoadingPreRender /> }>
 
         <div className="flex min-h-full  w-[900px] flex-col items-center justify-center px-6 py-12 lg:px-8 rounded-lg  border border-slate-200 shadow-md ">
 
@@ -28,7 +27,6 @@ const CreateArticle = () => {
             </div>
 
         </div>
-        </Suspense>
     )
 }
 

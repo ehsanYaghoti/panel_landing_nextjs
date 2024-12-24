@@ -1,18 +1,13 @@
 import { withFormik } from "formik";
 import * as yup from 'yup';
-import { LoginFormProps, LoginFormValues } from "@/types/auth";
-import InnerLoginForm from "@/components/forms/auth/innerLoginForm";
-// import callApi from "@/helpers/callApi";
 import { toast } from "react-toastify";
-import { comparePassword, getUser, isUserAlreadyExist } from "@/helpers/user";
 import { ArticleFormProps, ArticleFormValues } from "@/types/article";
 import InnerArticleForm from "@/components/forms/articles/innerArticleFormCreate";
-import callApi from "@/helpers/callApi";
 
 const articleFormValidationSchema = yup.object().shape({
-    title: yup.string().required().min(6),
+    title: yup.string().required().min(6).max(24),
     language: yup.string().required(),
-    summary: yup.string().required().min(32),
+    summary: yup.string().required().min(32).max(64),
     description : yup.string().required().min(64),
 })
 

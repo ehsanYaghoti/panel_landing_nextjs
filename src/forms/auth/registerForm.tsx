@@ -2,7 +2,7 @@ import { withFormik } from "formik";
 import * as yup from 'yup';
 import { RegisterFormProps, RegisterFormValues } from "@/types/auth";
 import InnerRegisterForm from "@/components/forms/auth/innerRegisterForm";
-import { isUserAlreadyExist } from "@/helpers/user";
+import { isPhoneNumberAlreadyExist, isUserAlreadyExist } from "@/helpers/user";
 import { toast } from "react-toastify";
 
 const phoneRegExp = /^(0|0098|\+98)9(0[1-5]|[1 3]\d|2[0-2]|98)\d{7}$/
@@ -28,18 +28,21 @@ const RegisterForm = withFormik<RegisterFormProps, RegisterFormValues>({
             
             const {router} = props
 
-            const isUserExist = await isUserAlreadyExist(values)
+            const isUserEmailExist = await isUserAlreadyExist(values)
 
-            console.log('is user' , isUserExist)
-
-            if(isUserExist){
+            if(isUserEmailExist){
                 toast.error('this email is registered before')
                 setFieldError('email' , 'this email already exist')
                 return 
             }
 
+            const isUserPhoneNumberExist = await isPhoneNumberAlreadyExist(values)
 
-
+            if(isUserPhoneNumberExist){
+                toast.error('this phone number is registered before')
+                setFieldError('phone_number' , 'this phone number already exist')
+                return 
+            }
 
             const formData = {
                 email : values.email,
@@ -57,9 +60,6 @@ const RegisterForm = withFormik<RegisterFormProps, RegisterFormValues>({
                 },
                 body : JSON.stringify(formData)
             })
-
-            console.log(res)
-
 
             if(res.ok){
                 toast.success('register was successfull now login in login page')

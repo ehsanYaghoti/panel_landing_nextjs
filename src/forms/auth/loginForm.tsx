@@ -4,7 +4,7 @@ import { LoginFormProps, LoginFormValues } from "@/types/auth";
 import InnerLoginForm from "@/components/forms/auth/innerLoginForm";
 import { UserModel } from "@/types/models";
 import { toast } from "react-toastify";
-import { comparePassword, getUser, isUserAlreadyExist } from "@/helpers/user";
+import { comparePassword, getUser, isPhoneNumberExistAndBelongToThisEmail, isUserAlreadyExist } from "@/helpers/user";
 import { storeLoginToken } from "@/helpers/auth";
 
 const phoneRegExp = /^(0|0098|\+98)9(0[1-5]|[1 3]\d|2[0-2]|98)\d{7}$/
@@ -30,14 +30,21 @@ const LoginForm = withFormik<LoginFormProps, LoginFormValues>({
             const { router , storeUser } = props
 
             const user = await getUser(values)
+            const isPhoneNumberAuthentic = await isPhoneNumberExistAndBelongToThisEmail(values) 
             const isPasswordValidate = await comparePassword(values , user)
-
 
             if(! user){
                 toast.error('this email is NOT registered before')
                 setFieldError('email' , 'this email is not exist')
                 return 
             }
+
+            if(! isPhoneNumberAuthentic){
+                toast.error('this phone number is wrong')
+                setFieldError('phone_number' , 'this phone number is wrong')
+                return 
+            }
+
 
             if(! isPasswordValidate){
                 toast.error('this password is wrong')
@@ -51,8 +58,6 @@ const LoginForm = withFormik<LoginFormProps, LoginFormValues>({
 
             if(res?.success){
                 
-                console.log('cookie has been set')
-
                 localStorage.setItem('userId' , user?.id)
                 localStorage.setItem('user' , JSON.stringify(user))
 

@@ -35,16 +35,14 @@ const CustomEditor = ({form , initialData} : Props) => {
         Font
     } = cloud.CKEditor;
 
-    const { FormatPainter } = cloud.CKEditorPremiumFeatures;
 
     return (
         <CKEditor
             editor={ ClassicEditor }
             data={initialData}
             onChange={(evnet : EventInfo , editor : ClassicEditor ) => {
-                console.log('event',evnet)
-                console.log('editor' , editor.getData())
-                    form.setFieldValue('description' , editor.getData())
+                
+                form.setFieldValue('description' , editor.getData())
             }}
             config={ {
                 licenseKey: 'eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3MzUzNDM5OTksImp0aSI6IjNhY2RhOWQ4LTQzMzAtNDQ1Ni1hYTE1LTVjNGI2YWEyMjgyNiIsInVzYWdlRW5kcG9pbnQiOiJodHRwczovL3Byb3h5LWV2ZW50LmNrZWRpdG9yLmNvbSIsImRpc3RyaWJ1dGlvbkNoYW5uZWwiOlsiY2xvdWQiLCJkcnVwYWwiLCJzaCJdLCJ3aGl0ZUxhYmVsIjp0cnVlLCJsaWNlbnNlVHlwZSI6InRyaWFsIiwiZmVhdHVyZXMiOlsiKiJdLCJ2YyI6ImZmZWY0NTgxIn0.Elh_mFdvt0aelHEOE43DH_n_SICStko0qijTBKKGD8aREbeRJTCIceWqw6C2XWxGLvUwTmuqihzAH78yzcQStA',
