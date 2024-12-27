@@ -12,21 +12,33 @@ const Reports = () => {
                     delivers range of plans is meticulously crafted to cater to your unique preferences and desires.
                 </p>
             </div>
-            <div className="flex flex-col xl:flex-row items-center xl:items-start justify-between gap-4 md:gap-16 " >
+            <div className="flex flex-col xl:flex-row items-center xl:items-start justify-between gap-32  xl:gap-10 " >
                 
                 <div  className="
-                    w-[45%]
+                    w-full
+                    h-fit
                     xl:w-1/2
-                    flex flex-col items-center gap-10
+                    
+                    border-x-[16px]
+                    md:border-x-[10px]
+                    border-transparent
+                    box-border
+
+                    flex flex-col items-center justify-between md:gap-8 xl:gap-0
+                    
                     bg-[url('/PNG/Vector329@2x.png')]
                     bg-contain
+                    bg-origin-content
                     bg-center
+                    bg-local
+                    bg-clip-border
                     bg-no-repeat
+                    px-1
 
                     md:bg-origin-border                    
                 " >
-                    <div className="flex items-center justify-between translate-y-32 md:translate-y-6 -translate-x-20 " >
-                        <Image className="object-contain w-auto h-auto" src={'/PNG/Group 73553@2x.png'} alt="trust" width={170} height={170}  />
+                    <div className="w-full h-1/3 flex items-center -translate-x-12 translate-y-2 md:-translate-x-[70px] md:-translate-y-14 lg:-translate-x-6 lg:-translate-y-14  xl:-translate-x-20 xl:-translate-y-16 2xl:translate-x-14 2xl:-translate-y-20 " >
+                        <Image className="object-contain w-24 h-24 md:w-32 md:h-32" src={'/PNG/Group 73553@2x.png'} alt="trust" width={96} height={96}  />
                         <div className="flex flex-col items-start gap-5" >
                             <h4 className="text-base whitespace-nowrap md:text-2xl font-[700]" >Trust Our secure</h4>
                             <p className="hidden md:flex text-slate-500 font-[500] " >
@@ -36,10 +48,10 @@ const Reports = () => {
                             </p>
                         </div>
                     </div>
-                    <div className="flex items-center flex-row-reverse translate-y-3 translate-x-20  "  >
-                        <Image className=" object-fit  w-auto h-auto" src={'/PNG/Group73552@2x.png'} alt="trust" width={170} height={170}  />
-                        <div className="flex flex-col items-start gap-5 text-right" >
-                            <h4 className="text-base md:text-2xl whitespace-nowrap font-[700] text-right" >Award-winning</h4>
+                    <div className=" w-full h-1/3 flex items-center flex-row-reverse translate-x-[42px] md:translate-x-[70px] lg:translate-x-6 xl:translate-x-20 2xl:-translate-x-16 translate-y-2   "  >
+                        <Image className=" object-fit w-24 h-24 md:w-32 md:h-32 " src={'/PNG/Group73552@2x.png'} alt="trust" width={96} height={96}  />
+                        <div className=" flex flex-col text-ellipsis items-start gap-1 md:gap-5 text-right" >
+                            <h4 className="texta-base md:text-2xl whitespace-nowrap font-[700] text-right" >Award-winning</h4>
                             <p className="text-slate-500 hidden md:flex font-[500] text-left  " >
                                 Experience the freedom of a seamless and worry-
                                 free data transition with our complimentary service.
@@ -47,8 +59,8 @@ const Reports = () => {
                             </p>
                         </div>
                     </div>
-                    <div className="flex items-center -translate-y-28 md:-translate-y-6 -translate-x-16 " >
-                        <Image className=" object-contain  w-auto h-auto " src={'/PNG/Group73554@2x.png'} alt="trust" width={170} height={170}  />
+                    <div className=" w-full h-1/3 flex items-center -translate-x-12 md:-translate-x-14 md:translate-y-16 lg:-translate-x-0 lg:translate-y-20 xl:-translate-x-16 xl:translate-y-16 2xl:translate-x-[75px] 2xl:translate-y-24 " >
+                        <Image className=" object-contain  w-24 h-24 md:w-32 md:h-32 lg:w-32 lg:h-32" src={'/PNG/Group73554@2x.png'} alt="trust" width={96} height={96}  />
                         <div className="flex flex-col items-start gap-3" >
                             <h4 className="text-base md:text-2xl whitespace-nowrap font-[700]" >Free data Transition</h4>
                             <p className="text-slate-500 hidden md:flex font-[500] " >
